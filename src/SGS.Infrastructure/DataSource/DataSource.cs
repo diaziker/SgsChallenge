@@ -1,17 +1,20 @@
-﻿using MongoDB.Driver;
+﻿using Microsoft.Extensions.Options;
+using MongoDB.Driver;
 using SGS.Domain.DataSource;
 using SGS.Domain.Entities;
-using SGS.Infrastructure.Databases;
+using SGS.Infrastructure.Settings;
 
 namespace SGS.Infrastructure.DataSource
 {
     public class DataSource : IDataSource
     {
-        private readonly MongoDbContext _context;
+        private readonly IMongoCollection<EntityProduct> _products;
 
-        public DataSource(MongoDbContext context)
+        public DataSource(IOptionsMonitor<DatabaseSettings> databaseSettings)
         {
-            _context = context;
+            var mongoClient = new MongoClient(databaseSettings.CurrentValue.ConnectionString);
+            var mongoDatabase = mongoClient.GetDatabase(databaseSettings.CurrentValue.DatabaseName);
+            _products = mongoDatabase.GetCollection<EntityProduct>(databaseSettings.CurrentValue.CollectionName);
         }
 
         public async Task<IEnumerable<EntityProduct>> GetAll(int pageNumber, int pageSize, string sortBy, bool ascending)
@@ -20,7 +23,7 @@ namespace SGS.Infrastructure.DataSource
                     ? Builders<EntityProduct>.Sort.Ascending(sortBy)
                     : Builders<EntityProduct>.Sort.Descending(sortBy);
 
-            return await _context.Products
+            return await _products
                             .Find(_ => true)
                             .Sort(sortDefinition)
                             .Skip((pageNumber - 1) * pageSize)
@@ -30,7 +33,7 @@ namespace SGS.Infrastructure.DataSource
 
         public async Task<EntityProduct> GetById(string id)
         {
-            var product = await _context.Products.Find(p => p.Id == id).FirstOrDefaultAsync();
+            var product = await _products.Find(p => p.ProductId == id).FirstOrDefaultAsync();
 
             return product;
         }
@@ -82,7 +85,7 @@ namespace SGS.Infrastructure.DataSource
                     ? Builders<EntityProduct>.Sort.Ascending(sortBy)
                     : Builders<EntityProduct>.Sort.Descending(sortBy);
 
-            return await _context.Products
+            return await _products
                             .Find(filter)
                             .Sort(sortDefinition)
                             .Skip((pageNumber - 1) * pageSize)

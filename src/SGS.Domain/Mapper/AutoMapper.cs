@@ -8,7 +8,9 @@ namespace SGS.Domain.Mapper
         {
             CreateMap<Entities.EntityProduct, Contracts.Product>()
                 .ForMember(dest => dest.Discount,
-                                opt => opt.MapFrom(src => src.Discount));
+                                opt => opt.MapFrom(src => src.Discount))
+                .ForMember(dest => dest.Id,
+                                opt => opt.MapFrom(src => src.ProductId));
 
             CreateMap<Entities.EntityDiscount, Contracts.Discount>();
         }

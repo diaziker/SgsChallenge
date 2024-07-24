@@ -10,8 +10,7 @@ namespace SGS.Api.Extensions
         public static IServiceCollection AddInfrastructureDependencies(this IServiceCollection services, IConfiguration configuration)
         {
             services
-                .AddSingleton<Infrastructure.Databases.MongoDbContext>()
-                .AddScoped<IDataSource, DataSource>()
+                .AddSingleton<IDataSource, DataSource>()
                 .Configure<DatabaseSettings>(configuration.GetSection(nameof(DatabaseSettings)));
 
             return services;
@@ -19,8 +18,7 @@ namespace SGS.Api.Extensions
 
         public static IServiceCollection AddDomainDependencies(this IServiceCollection services, IConfiguration configuration)
         {
-            services
-                .AddScoped<IProductServices, ProductServices>();
+            services.AddSingleton<IProductServices, ProductServices>();
 
             return services;
         }
