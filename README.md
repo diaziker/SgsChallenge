@@ -7,6 +7,9 @@ The goal of this exercise is to build an HTTP REST API that allows users to inte
 1. **ID vs _id in MongoDB:**
 - **Clarification:** In MongoDB, the `_id` field is used as the primary key for each document and is automatically generated if not provided. This `_id` is different from the `id` field that might be included in sample data. In the provided example JSON, the `id` field represents a unique identifier, but in MongoDB, the actual unique identifier for each document is stored in the `_id` field.
 
+2. **Infrastructure tests:**
+- **Clarification:** The infrastructure tests included in this project are designed to facilitate the insertion of any number of data entries into the system.
+
 ### **1. Build a RESTful API**
 - **Endpoint:** Create endpoints to serve GET requests for retrieving products.
 - **Paths:**
