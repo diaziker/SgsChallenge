@@ -69,7 +69,11 @@ The goal of this exercise is to build an HTTP REST API that allows users to inte
   ```http
   GET http://localhost:5000/api/products/filter?category=electronics&minPrice=50&maxPrice=200&isActive=true&stock=10&hasDiscount=true&pageNumber=1&pageSize=10&sortBy=price&ascending=true
 
-### 7. Build and Start the Services
+### 7. Build and Start the Services with Docker
+
+- **Host:** http://localhost:5000
+- **Swagger:** http://localhost:5000/swagger
+- **MongoDB:** mongodb://test:test@localhost:27017/
 
 Run the following command to build the Docker images and start the containers:
 
