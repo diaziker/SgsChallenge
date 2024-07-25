@@ -1,4 +1,5 @@
-﻿using SGS.Domain.Contracts;
+﻿using SGS.Domain.Models;
+
 namespace SGS.Domain.Services
 {
     public interface IProductServices

@@ -6,7 +6,7 @@ using SGS.Domain.Services;
 namespace SGS.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class ProductsController : ControllerBase
     {
         private readonly IProductServices _productServices;
@@ -25,6 +25,8 @@ namespace SGS.Controllers
         /// <param name="ascending">Sort direction (true for ascending, false for descending).</param>
         /// <returns>A list of products.</returns>
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<EntityProduct>))]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<IEnumerable<EntityProduct>>> Get(
             [FromQuery] int pageNumber = 1,
             [FromQuery] int pageSize = 10,
@@ -32,6 +34,10 @@ namespace SGS.Controllers
             [FromQuery] bool ascending = true)
         {
             var products = await _productServices.GetAllAsync(pageNumber, pageSize, sortBy.ToString(), ascending);
+            if (!products.Any())
+            {
+                return NotFound("No products found matching the criteria.");
+            }
             return Ok(products);
         }
 
@@ -41,12 +47,14 @@ namespace SGS.Controllers
         /// <param name="id">The ID of the product.</param>
         /// <returns>The product with the specified ID.</returns>
         [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(EntityProduct))]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<EntityProduct>> GetById(string id)
         {
             var product = await _productServices.GetByIdAsync(id);
             if (product == null)
             {
-                return NotFound();
+                return NotFound($"Product with ID {id} not found.");
             }
             return Ok(product);
         }
@@ -66,8 +74,10 @@ namespace SGS.Controllers
         /// <param name="ascending">Sort direction (true for ascending, false for descending).</param>
         /// <returns>A list of filtered products.</returns>
         [HttpGet("filter")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<EntityProduct>))]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<IEnumerable<EntityProduct>>> Filter(
-            [FromQuery] string category,
+            [FromQuery] string? category,
             [FromQuery] decimal? minPrice,
             [FromQuery] decimal? maxPrice,
             [FromQuery] bool? isActive,
@@ -79,6 +89,10 @@ namespace SGS.Controllers
             [FromQuery] bool ascending = true)
         {
             var products = await _productServices.GetFilteredProductsAsync(category, minPrice, maxPrice, isActive, stock, hasDiscount, pageNumber, pageSize, sortBy.ToString(), ascending);
+            if (!products.Any())
+            {
+                return NotFound("No products found matching the criteria.");
+            }
             return Ok(products);
         }
     }

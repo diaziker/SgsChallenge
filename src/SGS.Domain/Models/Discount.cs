@@ -1,4 +1,4 @@
-﻿namespace SGS.Domain.Contracts
+﻿namespace SGS.Domain.Models
 {
     public class Discount
     {

@@ -1,0 +1,28 @@
+version: '4.0'
+
+services:
+  database:
+    image: mongo:latest
+    container_name: database
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d:ro
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: test
+      MONGO_INITDB_ROOT_PASSWORD: test
+      MONGO_INITDB_DATABASE: sgs
+
+  webapp:
+    build: .
+    container_name: sgs
+    ports:
+      - "5000:8080"
+    depends_on:
+      - database
+    environment:
+      DatabaseSettings:ConnectionString: "mongodb://test:test@database:27017/"
+      DatabaseSettings:DatabaseName: "sgs"
+      DatabaseSettings:CollectionName: "products"
+      ASPNETCORE_ENVIRONMENT: "Development"
+    command: ["dotnet", "SGS.Api.dll"]

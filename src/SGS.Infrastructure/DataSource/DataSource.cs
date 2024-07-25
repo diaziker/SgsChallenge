@@ -12,6 +12,10 @@ namespace SGS.Infrastructure.DataSource
 
         public DataSource(IOptionsMonitor<DatabaseSettings> databaseSettings)
         {
+            Console.WriteLine(databaseSettings.CurrentValue.ConnectionString);
+            Console.WriteLine(databaseSettings.CurrentValue.DatabaseName);
+            Console.WriteLine(databaseSettings.CurrentValue.CollectionName);
+            
             var mongoClient = new MongoClient(databaseSettings.CurrentValue.ConnectionString);
             var mongoDatabase = mongoClient.GetDatabase(databaseSettings.CurrentValue.DatabaseName);
             _products = mongoDatabase.GetCollection<EntityProduct>(databaseSettings.CurrentValue.CollectionName);

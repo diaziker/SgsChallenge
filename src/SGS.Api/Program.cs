@@ -24,6 +24,7 @@ builder.Services.AddSwaggerGen(c =>
 builder.Services.AddDomainDependencies(builder.Configuration);
 builder.Services.AddInfrastructureDependencies(builder.Configuration);
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+builder.Services.AddRouting(options => options.LowercaseUrls = true);
 
 var app = builder.Build();
 

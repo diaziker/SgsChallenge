@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using SGS.Domain.Contracts;
 using SGS.Domain.DataSource;
+using SGS.Domain.Models;
 
 namespace SGS.Domain.Services
 {
