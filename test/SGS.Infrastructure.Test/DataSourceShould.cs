@@ -30,7 +30,7 @@ namespace SGS.Test
                     IsActive = i % 2 == 0,
                     Name = $"Product{i}",
                     Picture = $"https://picsum.photos/700/700?random={i}",
-                    Price = i * 10.5m,
+                    Price = i * 10.5,
                     Stock = i * 10,
                     Discount = new EntityDiscount
                     {

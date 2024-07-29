@@ -39,8 +39,8 @@ namespace SGS.Infrastructure.DataSource
         }
 
         public async Task<IEnumerable<EntityProduct>> GetFilteredProducts(string category,
-                                                                          decimal? minPrice,
-                                                                          decimal? maxPrice,
+                                                                          double? minPrice,
+                                                                          double? maxPrice,
                                                                           bool? isActive,
                                                                           int? stock,
                                                                           bool? hasDiscount,

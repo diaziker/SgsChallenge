@@ -6,6 +6,6 @@ namespace SGS.Domain.Services
     {
         Task<IEnumerable<Product>> GetAllAsync(int pageNumber, int pageSize, string sortBy, bool ascending);
         Task<Product> GetByIdAsync(string id);
-        Task<IEnumerable<Product>> GetFilteredProductsAsync(string category, decimal? minPrice, decimal? maxPrice, bool? isActive, int? stock, bool? hasDiscount, int pageNumber, int pageSize, string sortBy, bool ascending);
+        Task<IEnumerable<Product>> GetFilteredProductsAsync(string category, double? minPrice, double? maxPrice, bool? isActive, int? stock, bool? hasDiscount, int pageNumber, int pageSize, string sortBy, bool ascending);
     }
 }

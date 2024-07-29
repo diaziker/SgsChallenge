@@ -28,7 +28,7 @@ namespace SGS.Domain.Entities
         public string Picture { get; set; }
 
         [BsonElement("price")]
-        public decimal Price { get; set; }
+        public double Price { get; set; }
 
         [BsonElement("stock")]
         public int Stock { get; set; }

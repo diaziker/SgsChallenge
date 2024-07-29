@@ -34,7 +34,7 @@ namespace SGS.Domain.Test
                     IsActive = true,
                     Name = "Product 1",
                     Picture = "picture1.jpg",
-                    Price = 10.5m,
+                    Price = 10.5,
                     Stock = 100,
                     Discount = new EntityDiscount { Status = true, Value = 10 }
                 },
@@ -47,7 +47,7 @@ namespace SGS.Domain.Test
                     IsActive = false,
                     Name = "Product 2",
                     Picture = "picture2.jpg",
-                    Price = 20.5m,
+                    Price = 20.5,
                     Stock = 200,
                     Discount = new EntityDiscount { Status = false, Value = 20 }
                 }
@@ -89,7 +89,7 @@ namespace SGS.Domain.Test
                 IsActive = true,
                 Name = "Product 1",
                 Picture = "picture1.jpg",
-                Price = 10.5m,
+                Price = 10.5,
                 Stock = 100,
                 Discount = new EntityDiscount { Status = true, Value = 10 }
             };
@@ -133,7 +133,7 @@ namespace SGS.Domain.Test
                     IsActive = true,
                     Name = "Product 1",
                     Picture = "picture1.jpg",
-                    Price = 10.5m,
+                    Price = 10.5,
                     Stock = 100,
                     Discount = new EntityDiscount { Status = true, Value = 10 }
                 },
@@ -146,7 +146,7 @@ namespace SGS.Domain.Test
                     IsActive = false,
                     Name = "Product 2",
                     Picture = "picture2.jpg",
-                    Price = 20.5m,
+                    Price = 20.5,
                     Stock = 200,
                     Discount = new EntityDiscount { Status = false, Value = 20 }
                 }
@@ -154,8 +154,8 @@ namespace SGS.Domain.Test
 
             _mockDataSource.Setup(ds => ds.GetFilteredProducts(
                     It.IsAny<string>(),
-                    It.IsAny<decimal?>(),
-                    It.IsAny<decimal?>(),
+                    It.IsAny<double?>(),
+                    It.IsAny<double?>(),
                     It.IsAny<bool?>(),
                     It.IsAny<int?>(),
                     It.IsAny<bool?>(),
@@ -225,8 +225,8 @@ namespace SGS.Domain.Test
 
             _mockDataSource.Setup(ds => ds.GetFilteredProducts(
                     It.IsAny<string>(),
-                    It.IsAny<decimal?>(),
-                    It.IsAny<decimal?>(),
+                    It.IsAny<double?>(),
+                    It.IsAny<double?>(),
                     It.IsAny<bool?>(),
                     It.IsAny<int?>(),
                     It.IsAny<bool?>(),

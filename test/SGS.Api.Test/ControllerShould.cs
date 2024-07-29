@@ -31,7 +31,7 @@ namespace SGS.Api.Test
                     IsActive = true,
                     Name = "Product 1",
                     Picture = "picture1.jpg",
-                    Price = 10.5m,
+                    Price = 10.5,
                     Stock = 100,
                     Discount = new Discount { Status = true, Value = 10 }
                 }
@@ -57,7 +57,7 @@ namespace SGS.Api.Test
                 IsActive = true,
                 Name = "Product 1",
                 Picture = "picture1.jpg",
-                Price = 10.5m,
+                Price = 10.5,
                 Stock = 100,
                 Discount = new Discount { Status = true, Value = 10 }
             };
@@ -83,12 +83,12 @@ namespace SGS.Api.Test
                     IsActive = true,
                     Name = "Product 1",
                     Picture = "picture1.jpg",
-                    Price = 10.5m,
+                    Price = 10.5,
                     Stock = 100,
                     Discount = new Discount { Status = true, Value = 10 }
                 }
             };
-            _mockProductServices.Setup(s => s.GetFilteredProductsAsync(It.IsAny<string>(), It.IsAny<decimal?>(), It.IsAny<decimal?>(), It.IsAny<bool?>(), It.IsAny<int?>(), It.IsAny<bool?>(), It.IsAny<int>(), It.IsAny<int>(), It.IsAny<string>(), It.IsAny<bool>()))
+            _mockProductServices.Setup(s => s.GetFilteredProductsAsync(It.IsAny<string>(), It.IsAny<double?>(), It.IsAny<double?>(), It.IsAny<bool?>(), It.IsAny<int?>(), It.IsAny<bool?>(), It.IsAny<int>(), It.IsAny<int>(), It.IsAny<string>(), It.IsAny<bool>()))
                                 .ReturnsAsync(products);
 
             var sut = await _controller.Filter(null, null, null, null, null, null);
@@ -132,7 +132,7 @@ namespace SGS.Api.Test
         public async Task Filter_ReturnsNotFound_WhenNoProductsMatchFilter()
         {
             var products = new List<Product>();
-            _mockProductServices.Setup(s => s.GetFilteredProductsAsync(It.IsAny<string>(), It.IsAny<decimal?>(), It.IsAny<decimal?>(), It.IsAny<bool?>(), It.IsAny<int?>(), It.IsAny<bool?>(), It.IsAny<int>(), It.IsAny<int>(), It.IsAny<string>(), It.IsAny<bool>()))
+            _mockProductServices.Setup(s => s.GetFilteredProductsAsync(It.IsAny<string>(), It.IsAny<double?>(), It.IsAny<double?>(), It.IsAny<bool?>(), It.IsAny<int?>(), It.IsAny<bool?>(), It.IsAny<int>(), It.IsAny<int>(), It.IsAny<string>(), It.IsAny<bool>()))
                                 .ReturnsAsync(products);
 
             var sut = await _controller.Filter(null, null, null, null, null, null);

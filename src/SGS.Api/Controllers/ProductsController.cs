@@ -78,8 +78,8 @@ namespace SGS.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<IEnumerable<EntityProduct>>> Filter(
             [FromQuery] string? category,
-            [FromQuery] decimal? minPrice,
-            [FromQuery] decimal? maxPrice,
+            [FromQuery] double? minPrice,
+            [FromQuery] double? maxPrice,
             [FromQuery] bool? isActive,
             [FromQuery] int? stock,
             [FromQuery] bool? hasDiscount,

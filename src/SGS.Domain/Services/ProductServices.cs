@@ -28,8 +28,8 @@ namespace SGS.Domain.Services
         }
 
         public async Task<IEnumerable<Product>> GetFilteredProductsAsync(string category,
-                                                                         decimal? minPrice,
-                                                                         decimal? maxPrice,
+                                                                         double? minPrice,
+                                                                         double? maxPrice,
                                                                          bool? isActive,
                                                                          int? stock,
                                                                          bool? hasDiscount,

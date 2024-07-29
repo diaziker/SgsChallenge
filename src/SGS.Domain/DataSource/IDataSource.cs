@@ -6,6 +6,6 @@ namespace SGS.Domain.DataSource
     {
         Task<IEnumerable<EntityProduct>> GetAll(int pageNumber, int pageSize, string sortBy, bool ascending);
         Task<EntityProduct> GetById(string id);
-        Task<IEnumerable<EntityProduct>> GetFilteredProducts(string category, decimal? minPrice, decimal? maxPrice, bool? isActive, int? stock, bool? hasDiscount, int pageNumber, int pageSize, string sortBy, bool ascending);
+        Task<IEnumerable<EntityProduct>> GetFilteredProducts(string category, double? minPrice, double? maxPrice, bool? isActive, int? stock, bool? hasDiscount, int pageNumber, int pageSize, string sortBy, bool ascending);
     }
 }
